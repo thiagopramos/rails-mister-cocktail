@@ -1,0 +1,41 @@
+<!-- http://lorempixel.com/400/200/ -->
+<div class="container row-fluid">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= get_thumb_from_google(@cocktail.name) %>');">
+
+
+      <div class="card-description">
+        <h2><%= @cocktail.name %></h2>
+      </div>
+      <a class="card-link" href="#" ></a>
+    </div>
+
+     <table class="table table-striped"><tbody>
+      <% @cocktail.doses.each do |dose| %>
+        <tr class="row">
+        <td class="col-sm-5"> <%=  dose.ingredient.name %></td>
+          <td class="col-sm-5"> <%=  dose.description %></td>
+        <td  class="col-sm-1">
+
+          <%= link_to cocktail_dose_path(@cocktail,dose), method:"delete" do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          <% end %>
+        </td>
+        </tr>
+      <% end %>
+      </tbody></table>
+
+
+
+    <% @cocktail.doses.each do |dose| %>
+        <div class="col-sm-12 comment-card">
+
+        </div>
+    <% end %>
+
+      <div class="col-sm-12" style="margin: 20px 0;">
+        <%= link_to 'Add Dose', new_cocktail_dose_path(@cocktail) %>
+      </div>
+
+  </div>
+</div>
